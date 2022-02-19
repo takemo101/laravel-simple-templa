@@ -2,8 +2,6 @@
 
 namespace Takemo101\LaravelSimpleTempla\Scaffold;
 
-use Takemo101\LaravelSimpleTempla\SimpleTempla;
-
 /**
  * demo scaffold
  */

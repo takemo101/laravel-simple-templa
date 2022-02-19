@@ -1,0 +1,11 @@
+<?php
+
+namespace Stub\Entity\Demo{{ name|ucfirst }};
+
+class Demo{{ name|ucfirst }}Entity
+{
+    /**
+     * @var string
+     */
+    private string $name = '{{ key|lower }}';
+}

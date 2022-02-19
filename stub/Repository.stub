@@ -1,0 +1,11 @@
+<?php
+
+namespace Stub\Repository\Demo{{ name|ucfirst }};
+
+class Demo{{ name|ucfirst }}Repository
+{
+    /**
+     * @var string
+     */
+    private string $name = '{{ key|lower }}';
+}

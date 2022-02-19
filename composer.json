@@ -1,0 +1,56 @@
+{
+    "name": "takemo101/laravel-simple-templa",
+    "description": "Laravel Simple Templa",
+    "keywords": [
+        "php",
+        "package",
+        "laravel",
+        "parser"
+    ],
+    "authors": [
+        {
+            "name": "takemo101",
+            "email": "takemo101@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "homepage": "https://github.com/takemo101/laravel-simple-templa",
+    "license": "MIT",
+    "require": {
+        "illuminate/support": "^8|^9",
+        "illuminate/filesystem": "^8|^9",
+        "illuminate/console": "^8|^9",
+        "illuminate/validation": "^8|^9",
+        "takemo101/simple-templa": "^0.1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Takemo101\\LaravelSimpleTempla\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Test\\": "test/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Takemo101\\LaravelSimpleTempla\\ServiceProvider"
+            ],
+            "aliases": {
+                "SimpleTempla": "Takemo101\\LaravelSimpleTempla\\SimpleTemplaFacade"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require-dev": {
+        "php": "^8.0",
+        "phpunit/phpunit": "^9.5",
+        "orchestra/testbench": "^7.0"
+    }
+}

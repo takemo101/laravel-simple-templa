@@ -2,8 +2,6 @@
 
 namespace Takemo101\LaravelSimpleTempla\Scaffold;
 
-use Takemo101\LaravelSimpleTempla\SimpleTempla;
-
 /**
  * demo scaffold
  */
@@ -16,10 +14,8 @@ final class DemoScaffold extends Scaffold
 
     /**
      * constructor
-     *
-     * @param SimpleTempla $temple
      */
-    public function __construct(SimpleTempla $temple)
+    public function __construct()
     {
         $this->baseDirectory = dirname(__DIR__, 2);
     }

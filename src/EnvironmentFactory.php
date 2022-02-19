@@ -10,6 +10,7 @@ use Takemo101\SimpleTempla\Environment\{
 use Takemo101\SimpleTempla\Filter\{
     FilterName,
     Filter,
+    FilterProcessInterface,
 };
 use Takemo101\LaravelSimpleTempla\Filter\{
     Camel,
@@ -75,10 +76,13 @@ final class EnvironmentFactory
         // additional filters
         foreach ($filters as $name => $class) {
             if (class_exists($class)) {
-                $environment->addPresetFilter(new Filter(
-                    new FilterName($name),
-                    $this->app->make($class),
-                ));
+                $filterProcess = $this->app->make($class);
+                if ($filterProcess instanceof FilterProcessInterface) {
+                    $environment->addPresetFilter(new Filter(
+                        new FilterName($name),
+                        $filterProcess,
+                    ));
+                }
             }
         }
 

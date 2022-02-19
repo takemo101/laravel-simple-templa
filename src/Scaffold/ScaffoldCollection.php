@@ -3,6 +3,7 @@
 namespace Takemo101\LaravelSimpleTempla\Scaffold;
 
 use Illuminate\Contracts\Foundation\Application;
+use InvalidArgumentException;
 
 /**
  * scaffold collection class
@@ -25,7 +26,9 @@ final class ScaffoldCollection
         private Application $app,
         string ...$scaffolds,
     ) {
-        $this->scaffolds = $scaffolds;
+        foreach ($scaffolds as $name => $class) {
+            $this->add((string)$name, $class);
+        }
     }
 
     /**
@@ -42,10 +45,6 @@ final class ScaffoldCollection
 
         $class = $this->scaffolds[$name];
 
-        if (!class_exists($class)) {
-            return null;
-        }
-
         $scaffold = $this->app->make($class);
         return $scaffold instanceof Scaffold ? $scaffold : null;
     }
@@ -54,12 +53,17 @@ final class ScaffoldCollection
      * add scaffold
      *
      * @param string $name
-     * @param Scaffold $scaffold
+     * @param string $class
      * @return self
+     * @throws InvalidArgumentException
      */
-    public function add(string $name, Scaffold $scaffold): self
+    public function add(string $name, string $class): self
     {
-        $this->scaffolds[$name] = $scaffold;
+        if (!class_exists($class)) {
+            throw new InvalidArgumentException("class does not exist: [{$class}]");
+        }
+
+        $this->scaffolds[$name] = $class;
 
         return $this;
     }
@@ -68,7 +72,7 @@ final class ScaffoldCollection
      * factory
      *
      * @param Application $app
-     * @param array $scaffolds
+     * @param string[] $scaffolds
      * @return self
      */
     public static function fromArray(Application $app, array $scaffolds): self

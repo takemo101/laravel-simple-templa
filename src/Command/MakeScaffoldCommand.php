@@ -49,7 +49,9 @@ class MakeScaffoldCommand extends Command
     {
         $name = $this->argument('name');
 
-        $scaffold = $this->scaffolds->makeByName($name);
+        $scaffold = $this->scaffolds->makeByName(
+            (string)(is_array($name) ? array_unshift($name) : $name),
+        );
 
         // not found scaffold name error
         if (!$scaffold) {

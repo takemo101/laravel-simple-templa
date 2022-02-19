@@ -36,7 +36,7 @@ final class ScaffoldProcess
      * create scaffold file
      *
      * @param InOutPath $path
-     * @param array $data
+     * @param mixed[] $data
      * @return void
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */

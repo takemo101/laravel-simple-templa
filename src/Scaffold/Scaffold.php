@@ -28,26 +28,4 @@ abstract class Scaffold
     {
         return [];
     }
-
-    /**
-     * get option by key
-     *
-     * @param string $key
-     * @return string|null
-     */
-    protected function option(string $key): ?string
-    {
-        return Arr::get($this->options, $key);
-    }
-
-    /**
-     * get options
-     *
-     * @param string $key
-     * @return mixed[]
-     */
-    protected function options(): array
-    {
-        return $this->options;
-    }
 }

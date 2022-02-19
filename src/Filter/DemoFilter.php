@@ -2,17 +2,11 @@
 
 namespace Takemo101\LaravelSimpleTempla\Filter;
 
-use Illuminate\Contracts\Filesystem\Filesystem;
+use Illuminate\Filesystem\Filesystem;
 use Takemo101\SimpleTempla\Filter\FilterProcessInterface;
 
 final class DemoFilter implements FilterProcessInterface
 {
-    public function __construct(
-        private Filesystem $filesystem,
-    ) {
-        //
-    }
-
     /**
      * execute filter process
      *

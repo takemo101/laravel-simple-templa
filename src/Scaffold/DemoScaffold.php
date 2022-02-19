@@ -16,10 +16,8 @@ final class DemoScaffold extends Scaffold
 
     /**
      * constructor
-     *
-     * @param SimpleTempla $temple
      */
-    public function __construct(SimpleTempla $temple)
+    public function __construct()
     {
         $this->baseDirectory = dirname(__DIR__, 2);
     }

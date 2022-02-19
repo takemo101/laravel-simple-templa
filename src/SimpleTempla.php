@@ -14,7 +14,7 @@ final class SimpleTempla
     /**
      * constructor
      *
-     * @param string[] $filters
+     * @param Environment $environment
      */
     public function __construct(
         private Environment $environment,

@@ -14,7 +14,7 @@ final class ScaffoldCollection
     /**
      * @var string[]
      */
-    private array $scaffolds;
+    private array $scaffolds = [];
 
     /**
      * constructor

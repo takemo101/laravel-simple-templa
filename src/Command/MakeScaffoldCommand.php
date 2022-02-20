@@ -48,14 +48,16 @@ class MakeScaffoldCommand extends Command
     public function handle()
     {
         $name = $this->argument('name');
+        $name = (string)(is_array($name) ? array_unshift($name) : $name);
 
         $scaffold = $this->scaffolds->makeByName(
-            (string)(is_array($name) ? array_unshift($name) : $name),
+            $name,
         );
 
-        // not found scaffold name error
+        // scaffold name error
         if (!$scaffold) {
-            $this->error('not found scaffold process');
+            $this->warn("--- Argument error ---");
+            $this->warn("Scaffold process not found: {$name}");
             return self::NotFoundScaffoldProcessError;
         }
 
@@ -65,10 +67,7 @@ class MakeScaffoldCommand extends Command
 
         // input options
         foreach ($names as $name) {
-            $this->newLine();
-            $option = $this->ask("please input [{$name}]");
-            $this->info("{$name}: {$option}");
-            $options[$name] = $option;
+            $options[$name] = $this->ask("please input [{$name}]");
         }
 
         $validator = Validator::make($options, $rules);
@@ -76,13 +75,11 @@ class MakeScaffoldCommand extends Command
         // validation error
         if ($validator->fails()) {
 
-            $this->newLine();
-            $this->error('input error!');
+            $this->warn('--- Input error! ---');
 
             $errors = $validator->errors();
             foreach ($errors->all() as $error) {
-                $this->newLine();
-                $this->error($error);
+                $this->warn($error);
             }
             return self::ValidationError;
         }
@@ -93,6 +90,8 @@ class MakeScaffoldCommand extends Command
             ),
             $validator->validated(),
         );
+
+        $this->info('The file was created successfully');
 
         return 0;
     }

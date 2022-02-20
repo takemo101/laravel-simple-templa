@@ -80,7 +80,7 @@ class ServiceProvider extends BaseServiceProvider
     {
         $this->publishes([
             "{$this->baseDirectory}/config/config.php" => $this->app->configPath("{$this->config}.php"),
-        ]);
+        ], 'simple-templa');
     }
 
     /**

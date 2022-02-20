@@ -2,6 +2,19 @@
 This package is a wrap of Simple Templa for Laravel.  
 A Scaffold function using Simple Templa has also been added.
 
+## Installation
+Execute the following composer command.
+```
+composer require takemo101/laravel-simple-templa
+```
+
+## Publish the config
+Publish the config with the following artisan command.  
+You can set filters and scaffolds from the config.
+```
+php artisan vendor:publish --tag="simple-templa"
+```
+
 ## How to use
 Please use as follows
 
@@ -39,19 +52,18 @@ Set the created Scaffold class in the config.
 <?php
 // ./config/simple-sample.php
 
-use App\Scaffold\DemoScaffold;
-
 return [
     ...
     'scaffolds' => [
-        'demo' => DemoScaffold::class,
+        'demo' => App\Scaffolds\DemoScaffold::class,
     ],
 ]
 ```
 ```
 <?php
+// ./app/Scaffolds/DemoScaffold.php
 
-namespace App\Scaffold;
+namespace App\Scaffolds;
 
 use Takemo101\LaravelSimpleTempla\Scaffold\Scaffold;
 
@@ -93,9 +105,23 @@ class DemoScaffold extends Scaffold
     }
 }
 ```
+```
+<?php
+// ./resources/stub/Entity.stub
+
+namespace Stub\Entity\Demo{{ name|ucfirst }};
+
+class Demo{{ name|ucfirst }}Entity
+{
+    /**
+     * @var string
+     */
+    private string $name = '{{ key|lower }}';
+}
+```
 After setting the Scaffold class, run Artisan to create the file.
 ```
-$ php artisan exec:scaff demo
+$ php artisan make:scaff demo
 ```
 ## Filter for Laravel
 In the template language, you can use Filter using Laravel's Str class.

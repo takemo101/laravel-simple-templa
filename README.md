@@ -93,9 +93,10 @@ class DemoScaffold extends Scaffold
     /**
      * get inout path sets
      *
+     * @param mixed[] $data
      * @return string[]
      */
-    public function inoutPaths(): array
+    public function inoutPaths(array $data): array
     {
         // You can create a class file using the template language from the file
         return [

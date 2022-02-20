@@ -2,8 +2,6 @@
 
 namespace Takemo101\LaravelSimpleTempla\Scaffold;
 
-use Illuminate\Support\Arr;
-
 /**
  * scaffold super class
  */
@@ -14,18 +12,13 @@ abstract class Scaffold
      *
      * @return string[]
      */
-    public function rules(): array
-    {
-        return [];
-    }
+    abstract public function rules(): array;
 
     /**
      * get inout path sets
      *
+     * @param mixed[] $data
      * @return string[]
      */
-    public function inoutPaths(): array
-    {
-        return [];
-    }
+    abstract public function inoutPaths(array $data): array;
 }

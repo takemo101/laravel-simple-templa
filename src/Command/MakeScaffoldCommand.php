@@ -84,11 +84,14 @@ class MakeScaffoldCommand extends Command
             return self::ValidationError;
         }
 
+        // gate validated data
+        $data = $validator->validated();
+
         $this->process->execute(
             PathIterator::fromStrings(
-                $scaffold->inoutPaths(),
+                $scaffold->inoutPaths($data),
             ),
-            $validator->validated(),
+            $data,
         );
 
         $this->info('The file was created successfully');

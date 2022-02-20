@@ -11,6 +11,10 @@ shell:
 stop:
 	docker-compose stop php
 
+.PHONY: remove
+remove:
+	docker-compose rm php
+
 .PHONY: install
 install:
 	docker-compose run --rm composer install

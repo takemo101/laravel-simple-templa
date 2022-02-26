@@ -37,12 +37,15 @@ final class DemoScaffold extends Scaffold
      * get inout path sets
      *
      * @param mixed[] $data
-     * @return string[]
+     * @return array<string,string|string[]>
      */
     public function inoutPaths(array $data): array
     {
         return [
-            "{$this->baseDirectory}/stub/Entity.stub" => "{$this->baseDirectory}/app/Demo{{ name|ucfirst }}/{{ name|ucfirst }}Entity.php",
+            "{$this->baseDirectory}/stub/Entity.stub" => [
+                "{$this->baseDirectory}/app/Demo{{ name|ucfirst }}/{{ name|ucfirst }}Entity.php",
+                "{$this->baseDirectory}/app/Test{{ name|ucfirst }}/{{ name|ucfirst }}Entity.php",
+            ],
             "{$this->baseDirectory}/stub/Repository.stub" => "{$this->baseDirectory}/app/Demo{{ name|ucfirst }}/{{ name|ucfirst }}Repository.php",
         ];
     }

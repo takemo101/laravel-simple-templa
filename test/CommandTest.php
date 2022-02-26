@@ -2,7 +2,10 @@
 
 namespace Test;
 
-use Takemo101\LaravelSimpleTempla\Command\MakeScaffoldCommand;
+use Takemo101\LaravelSimpleTempla\Command\{
+    ExecScaffoldCommand,
+    MakeScaffoldCommand,
+};
 
 class CommandTest extends TestCase
 {
@@ -11,7 +14,7 @@ class CommandTest extends TestCase
      */
     public function executeCommand__OK(): void
     {
-        $this->artisan(MakeScaffoldCommand::class, [
+        $this->artisan(ExecScaffoldCommand::class, [
             'name' => 'demo',
         ])
             ->expectsQuestion('please input [name]', 'name')
@@ -24,12 +27,12 @@ class CommandTest extends TestCase
      */
     public function executeCommand__validation__error__NG(): void
     {
-        $this->artisan(MakeScaffoldCommand::class, [
+        $this->artisan(ExecScaffoldCommand::class, [
             'name' => 'demo',
         ])
             ->expectsQuestion('please input [name]', '')
             ->expectsQuestion('please input [key]', '')
-            ->assertExitCode(MakeScaffoldCommand::ValidationError);
+            ->assertExitCode(ExecScaffoldCommand::ValidationError);
     }
 
     /**
@@ -37,9 +40,20 @@ class CommandTest extends TestCase
      */
     public function executeCommand__not_found_scaffold_error__NG(): void
     {
-        $this->artisan(MakeScaffoldCommand::class, [
+        $this->artisan(ExecScaffoldCommand::class, [
             'name' => 'test',
         ])
-            ->assertExitCode(MakeScaffoldCommand::NotFoundScaffoldProcessError);
+            ->assertExitCode(ExecScaffoldCommand::NotFoundScaffoldProcessError);
+    }
+
+    /**
+     * @test
+     */
+    public function executeMakeCommand__OK(): void
+    {
+        $this->artisan(MakeScaffoldCommand::class, [
+            'name' => 'Scaff',
+        ])
+            ->assertExitCode(0);
     }
 }

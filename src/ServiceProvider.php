@@ -4,7 +4,10 @@ namespace Takemo101\LaravelSimpleTempla;
 
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Illuminate\Filesystem\Filesystem;
-use Takemo101\LaravelSimpleTempla\Command\MakeScaffoldCommand;
+use Takemo101\LaravelSimpleTempla\Command\{
+    MakeScaffoldCommand,
+    ExecScaffoldCommand,
+};
 use Takemo101\LaravelSimpleTempla\Scaffold\{
     ScaffoldCollection,
     ScaffoldProcess,
@@ -95,6 +98,7 @@ class ServiceProvider extends BaseServiceProvider
         }
 
         $this->commands([
+            ExecScaffoldCommand::class,
             MakeScaffoldCommand::class,
         ]);
     }

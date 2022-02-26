@@ -42,18 +42,21 @@ final class ScaffoldProcess
      */
     private function createFile(InOutPath $path, array $data): void
     {
-        $outputPath = $this->templa->parse(
-            $path->getOutputPath(),
-            $data,
-        );
         $inputPath = $path->getInputPath();
-
         $inputText = $this->filesystem->get($inputPath);
+
         $outputText = $this->templa->parse($inputText, $data);
 
-        $outputDirectory = $this->filesystem->dirname($outputPath);
-        $this->filesystem->ensureDirectoryExists($outputDirectory, 0755);
+        foreach ($path->getOutputPath() as $outPath) {
+            $outputPath = $this->templa->parse(
+                $outPath,
+                $data,
+            );
 
-        $this->filesystem->put($outputPath, $outputText);
+            $outputDirectory = $this->filesystem->dirname($outputPath);
+            $this->filesystem->ensureDirectoryExists($outputDirectory, 0755);
+
+            $this->filesystem->put($outputPath, $outputText);
+        }
     }
 }

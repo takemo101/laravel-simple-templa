@@ -2,100 +2,72 @@
 
 namespace Takemo101\LaravelSimpleTempla\Command;
 
-use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Validator;
-use Takemo101\LaravelSimpleTempla\Scaffold\{
-    ScaffoldCollection,
-    ScaffoldProcess,
-    PathIterator,
-};
+use Illuminate\Console\Concerns\CreatesMatchingTest;
+use Illuminate\Console\GeneratorCommand;
+use Illuminate\Support\Str;
 
-class MakeScaffoldCommand extends Command
+class MakeScaffoldCommand extends GeneratorCommand
 {
-    /**
-     * @var integer
-     */
-    const NotFoundScaffoldProcessError = -1;
+    use CreatesMatchingTest;
 
     /**
-     * @var integer
-     */
-    const ValidationError = -2;
-
-    /**
+     * The console command name.
+     *
      * @var string
      */
-    protected $signature = 'make:scaff
-		{name : the name of the scaffold process}';
+    protected $name = 'make:scaff';
 
     /**
+     * The name of the console command.
+     *
+     * This name is used to identify the command during lazy loading.
+     *
+     * @var string|null
+     */
+    protected static $defaultName = 'make:scaff';
+
+    /**
+     * The console command description.
+     *
      * @var string
      */
-    protected $description = 'make scaffold process';
+    protected $description = 'Create a new scaffold class';
 
-    public function __construct(
-        private ScaffoldCollection $scaffolds,
-        private ScaffoldProcess $process,
-    ) {
-        parent::__construct();
+    /**
+     * The type of class being generated.
+     *
+     * @var string
+     */
+    protected $type = 'Scaffold';
+
+    /**
+     * Get the stub file for the generator.
+     *
+     * @return string
+     */
+    protected function getStub()
+    {
+        return __DIR__ . '/../../stub/Scaffold.stub';
     }
 
     /**
-     * command handle
+     * Get the default namespace for the class.
      *
-     * @return integer
+     * @param  string  $rootNamespace
+     * @return string
      */
-    public function handle()
+    protected function getDefaultNamespace($rootNamespace)
     {
-        $name = $this->argument('name');
-        $name = (string)(is_array($name) ? array_unshift($name) : $name);
+        return $rootNamespace . '\Scaffolds';
+    }
 
-        $scaffold = $this->scaffolds->makeByName(
-            $name,
-        );
-
-        // scaffold name error
-        if (!$scaffold) {
-            $this->warn("--- Argument error ---");
-            $this->warn("Scaffold process not found: {$name}");
-            return self::NotFoundScaffoldProcessError;
-        }
-
-        $rules = $scaffold->rules();
-        $names = array_keys($rules);
-        $options = [];
-
-        // input options
-        foreach ($names as $name) {
-            $options[$name] = $this->ask("please input [{$name}]");
-        }
-
-        $validator = Validator::make($options, $rules);
-
-        // validation error
-        if ($validator->fails()) {
-
-            $this->warn('--- Input error! ---');
-
-            $errors = $validator->errors();
-            foreach ($errors->all() as $error) {
-                $this->warn($error);
-            }
-            return self::ValidationError;
-        }
-
-        // gate validated data
-        $data = $validator->validated();
-
-        $this->process->execute(
-            PathIterator::fromStrings(
-                $scaffold->inoutPaths($data),
-            ),
-            $data,
-        );
-
-        $this->info('The file was created successfully');
-
-        return 0;
+    /**
+     * is custom namespace
+     *
+     * @return boolean
+     */
+    protected function isCustomNamespace(): bool
+    {
+        return Str::contains($this->getNameInput(), '/');
     }
 }

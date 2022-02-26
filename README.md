@@ -47,18 +47,11 @@ echo \SimpleTempla::parse(
 ```
 
 ### Scaffold
-Set the created Scaffold class in the config.
+Run the Artisan command below to generate the Scaffold class.
 ```
-<?php
-// ./config/simple-sample.php
-
-return [
-    ...
-    'scaffolds' => [
-        'demo' => App\Scaffolds\DemoScaffold::class,
-    ],
-]
+php artisan make:scaff ClassName
 ```
+Please set the input rule and output path in the generated Scaffold class.
 ```
 <?php
 // ./app/Scaffolds/DemoScaffold.php
@@ -94,7 +87,7 @@ class DemoScaffold extends Scaffold
      * get inout path sets
      *
      * @param mixed[] $data
-     * @return string[]
+     * @return array<string,string|string[]>
      */
     public function inoutPaths(array $data): array
     {
@@ -106,6 +99,7 @@ class DemoScaffold extends Scaffold
     }
 }
 ```
+Create a stub file as the output source.  
 ```
 <?php
 // ./resources/stub/Entity.stub
@@ -120,9 +114,21 @@ class Demo{{ name|ucfirst }}Entity
     private string $name = '{{ key|lower }}';
 }
 ```
+Set the created Scaffold class in the config.
+```
+<?php
+// ./config/simple-sample.php
+
+return [
+    ...
+    'scaffolds' => [
+        'demo' => App\Scaffolds\DemoScaffold::class,
+    ],
+]
+```
 After setting the Scaffold class, run Artisan to create the file.
 ```
-$ php artisan make:scaff demo
+php artisan simple-module:exec demo
 ```
 ## Filter for Laravel
 In the template language, you can use Filter using Laravel's Str class.

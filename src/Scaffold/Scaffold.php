@@ -18,7 +18,7 @@ abstract class Scaffold
      * get inout path sets
      *
      * @param mixed[] $data
-     * @return string[]
+     * @return array<string,string|string[]>
      */
     abstract public function inoutPaths(array $data): array;
 }

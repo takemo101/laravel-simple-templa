@@ -8,16 +8,21 @@ namespace Takemo101\LaravelSimpleTempla\Scaffold;
 final class InOutPath
 {
     /**
+     * @var string[]
+     */
+    private array $outputPath;
+
+    /**
      * constructor
      *
      * @param string $inputPath
-     * @param string $outputPath
+     * @param string|string[] $outputPath
      */
     public function __construct(
         private string $inputPath,
-        private string $outputPath,
+        string|array $outputPath,
     ) {
-        //
+        $this->outputPath = is_string($outputPath) ? [$outputPath] : $outputPath;
     }
 
     /**
@@ -33,9 +38,9 @@ final class InOutPath
     /**
      * get output path
      *
-     * @return string
+     * @return string[]
      */
-    public function getOutputPath(): string
+    public function getOutputPath(): array
     {
         return $this->outputPath;
     }

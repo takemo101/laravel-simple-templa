@@ -1,0 +1,41 @@
+<?php
+
+namespace DummyNamespace;
+
+use Takemo101\LaravelSimpleTempla\Scaffold\Scaffold;
+
+class DummyClass extends Scaffold
+{
+    /**
+     * constructor
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * get need command option validation rules
+     *
+     * @return string[]
+     */
+    public function rules(): array
+    {
+        return [
+            //
+        ];
+    }
+
+    /**
+     * get inout path sets
+     *
+     * @param mixed[] $data
+     * @return array<string,string|string[]>
+     */
+    public function inoutPaths(array $data): array
+    {
+        return [
+            //
+        ];
+    }
+}

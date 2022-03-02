@@ -20,7 +20,7 @@ Please use as follows
 
 ### Simple Templa Facade
 You can use the template language by using the Facade class.
-```
+```php
 // Get Template object
 $template = \SimpleTempla::template('{{ data.a }} {{ data.b }}');
 
@@ -52,7 +52,7 @@ Run the Artisan command below to generate the Scaffold class.
 php artisan make:scaff ClassName
 ```
 Please set the input rule and output path in the generated Scaffold class.
-```
+```php
 <?php
 // ./app/Scaffolds/DemoScaffold.php
 
@@ -100,7 +100,7 @@ class DemoScaffold extends Scaffold
 }
 ```
 Create a stub file as the output source.  
-```
+```php
 <?php
 // ./resources/stub/Entity.stub
 
@@ -115,7 +115,7 @@ class Demo{{ name|ucfirst }}Entity
 }
 ```
 Set the created Scaffold class in the config.
-```
+```php
 <?php
 // ./config/simple-sample.php
 

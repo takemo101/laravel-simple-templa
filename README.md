@@ -1,4 +1,9 @@
 # The Simple Templa For Laravel
+
+[![Testing](https://github.com/takemo101/laravel-simple-templa/actions/workflows/testing.yml/badge.svg)](https://github.com/takemo101/laravel-simple-templa/actions/workflows/testing.yml)
+[![PHPStan](https://github.com/takemo101/laravel-simple-templa/actions/workflows/phpstan.yml/badge.svg)](https://github.com/takemo101/laravel-simple-templa/actions/workflows/phpstan.yml)
+[![Validate Composer](https://github.com/takemo101/laravel-simple-templa/actions/workflows/composer.yml/badge.svg)](https://github.com/takemo101/laravel-simple-templa/actions/workflows/composer.yml)
+
 This package is a wrap of Simple Templa for Laravel.  
 A Scaffold function using Simple Templa has also been added.
 

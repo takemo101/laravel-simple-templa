@@ -46,7 +46,7 @@ final class PathIterator
     /**
      * factory
      *
-     * @param string[] $paths
+     * @param array<string,string|string[]> $paths
      * @return self
      */
     public static function fromStrings(array $paths): self

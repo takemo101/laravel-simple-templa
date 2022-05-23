@@ -133,7 +133,7 @@ return [
 ```
 After setting the Scaffold class, run Artisan to create the file.
 ```
-php artisan simple-module:exec demo
+php artisan simple-templa:exec demo
 ```
 ## Filter for Laravel
 In the template language, you can use Filter using Laravel's Str class.
@@ -145,6 +145,7 @@ In the template language, you can use Filter using Laravel's Str class.
 | lower | Str::lower |
 | markdown | Str::markdown |
 | plural | Str::plural |
+| pluralStudly | Str::pluralStudly |
 | reverse | Str::reverse |
 | singular | Str::singular |
 | slug | Str::slug |

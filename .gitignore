@@ -11,3 +11,4 @@ composer.lock
 
 # package
 /app/
+/.vscode

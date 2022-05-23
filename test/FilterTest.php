@@ -44,6 +44,11 @@ class FilterTest extends TestCase
             'plural',
         );
         $this->assertEquals(
+            SimpleTempla::parse('{{ data|pluralStudly }}', ['data' => 'VerifiedHuman']),
+            'VerifiedHumans',
+            'pluralStudly',
+        );
+        $this->assertEquals(
             SimpleTempla::parse('{{ data|reverse }}', ['data' => 'hello']),
             'olleh',
             'reverse',

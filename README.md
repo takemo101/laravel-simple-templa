@@ -145,6 +145,7 @@ In the template language, you can use Filter using Laravel's Str class.
 | lower | Str::lower |
 | markdown | Str::markdown |
 | plural | Str::plural |
+| pluralStudly | Str::pluralStudly |
 | reverse | Str::reverse |
 | singular | Str::singular |
 | slug | Str::slug |

@@ -12,3 +12,4 @@ composer.lock
 # package
 /app/
 /.vscode
+.env

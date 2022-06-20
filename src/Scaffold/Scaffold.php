@@ -21,4 +21,15 @@ abstract class Scaffold
      * @return array<string,string|string[]>
      */
     abstract public function inoutPaths(array $data): array;
+
+    /**
+     * get extended data
+     *
+     * @param mixed[] $data
+     * @return mixed[]
+     */
+    public function extend(array $data): array
+    {
+        return $data;
+    }
 }

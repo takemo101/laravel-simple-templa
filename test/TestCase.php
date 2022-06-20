@@ -6,7 +6,6 @@ use Takemo101\LaravelSimpleTempla\{
     ServiceProvider,
     SimpleTemplaFacade,
 };
-use Takemo101\LaravelSimpleTempla\Scaffold\DemoScaffold;
 use Takemo101\LaravelSimpleTempla\Filter\DemoFilter;
 use Orchestra\Testbench\TestCase as Orchestra;
 

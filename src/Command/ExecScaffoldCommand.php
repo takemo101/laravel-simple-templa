@@ -87,11 +87,13 @@ class ExecScaffoldCommand extends Command
         // gate validated data
         $data = $validator->validated();
 
+        $paths = $scaffold->inoutPaths($data);
+
         $this->process->execute(
             PathIterator::fromStrings(
-                $scaffold->inoutPaths($data),
+                $paths,
             ),
-            $data,
+            $scaffold->extend($data),
         );
 
         $this->info('The file was created successfully');

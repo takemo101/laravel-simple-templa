@@ -2,9 +2,9 @@
 
 namespace DummyNamespace;
 
-use Takemo101\LaravelSimpleTempla\Scaffold\Scaffold;
+use Takemo101\LaravelSimpleTempla\Scaffold\SimpleScaffold;
 
-class DummyClass extends Scaffold
+class DummyClass extends SimpleScaffold
 {
     /**
      * constructor

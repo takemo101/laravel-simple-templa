@@ -8,4 +8,9 @@ class Demo{{ name|ucfirst }}Entity
      * @var string
      */
     private string $name = '{{ key|lower }}';
+
+    /**
+     * @var string
+     */
+    private string ${{ extend }};
 }

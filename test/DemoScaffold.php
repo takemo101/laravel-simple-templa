@@ -1,11 +1,13 @@
 <?php
 
-namespace Takemo101\LaravelSimpleTempla\Scaffold;
+namespace Test;
+
+use Takemo101\LaravelSimpleTempla\Scaffold\SimpleScaffold;
 
 /**
  * demo scaffold
  */
-final class DemoScaffold extends Scaffold
+final class DemoScaffold extends SimpleScaffold
 {
     /**
      * @var string
@@ -17,7 +19,7 @@ final class DemoScaffold extends Scaffold
      */
     public function __construct()
     {
-        $this->baseDirectory = dirname(__DIR__, 2);
+        $this->baseDirectory = dirname(__DIR__, 1);
     }
 
     /**
@@ -41,6 +43,9 @@ final class DemoScaffold extends Scaffold
      */
     public function inoutPaths(array $data): array
     {
+        $this->addExtend('extend', 'extend');
+        $this->addExtend('name', 'death');
+
         return [
             "{$this->baseDirectory}/stub/Entity.stub" => [
                 "{$this->baseDirectory}/app/Demo{{ name|ucfirst }}/{{ name|ucfirst }}Entity.php",

@@ -59,8 +59,6 @@ php artisan make:scaff ClassName
 Please set the input rule and output path in the generated Scaffold class.
 ```php
 <?php
-// ./app/Scaffolds/DemoScaffold.php
-
 namespace App\Scaffolds;
 
 use Takemo101\LaravelSimpleTempla\Scaffold\Scaffold;

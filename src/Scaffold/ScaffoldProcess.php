@@ -37,15 +37,22 @@ final class ScaffoldProcess
      *
      * @param InOutPath $path
      * @param mixed[] $data
+     * @param mixed[] $extend
      * @return void
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
-    private function createFile(InOutPath $path, array $data): void
-    {
+    private function createFile(
+        InOutPath $path,
+        array $data,
+        array $extend = [],
+    ): void {
         $inputPath = $path->getInputPath();
         $inputText = $this->filesystem->get($inputPath);
 
-        $outputText = $this->templa->parse($inputText, $data);
+        $outputText = $this->templa->parse(
+            $inputText,
+            $data,
+        );
 
         foreach ($path->getOutputPath() as $outPath) {
             $outputPath = $this->templa->parse(
